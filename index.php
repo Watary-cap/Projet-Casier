@@ -29,5 +29,5 @@ if(!isset($_SESSION['connect'])){
 	include 'vue/vueConnexion/v_form_connexion.php';
 }
 include 'vue/pied.php';
-?>        				 
+?>
          

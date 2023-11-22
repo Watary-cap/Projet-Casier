@@ -27,13 +27,6 @@ class DbEmplacement{
 	public static function updateEmplacement(){
 		
 	}
-	public static function deleteEmplacement($id){
-		$sql = "delete from emplacement where id = $id";
-		$connect = MysqlDb::getPdoDb();//objet classe PDO
-		$objResult = $connect->exec($sql); //objet classe PDOStatement
-
-	}
-		
 }
 
 ?>
