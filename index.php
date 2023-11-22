@@ -23,9 +23,6 @@ if(isset($_SESSION['connect'])){
 					 case 'Emplacement':
 						include 'controleur/ctlEmplacement.php';
 						break;
-						case 'Reservation':
-							include 'controleur/ctlReservation.php';
-							break;
 				}	
 		}		
 if(!isset($_SESSION['connect'])){
