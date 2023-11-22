@@ -14,9 +14,6 @@
 						<td><?php echo $ligne['nom'];?></td>
 						<td><?php echo $ligne['nombre_de_casiers'];?></td>
 						<td>
-						<a href="index.php?ctl=Emplacement&action=supprimer&id=<?php echo $ligne['id'];?>">
-							<img src=".\vue\images\remove.png"width=20px height=20px>
-						</a>
 						<a href="index.php?ctl=Emplacement&action=fiche&id=<?php echo $ligne['id'];?>">
 							<img src=".\vue\images\editer.png"width=20px height=20px>
 						</a>
