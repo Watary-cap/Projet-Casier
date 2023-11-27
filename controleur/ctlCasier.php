@@ -27,6 +27,15 @@ switch($action){
 			 include 'vue/vueCasier/v_listeCasier.php';
 			 
 			 break;
+
+			 case 'listerEmpCasiers':
+				//appel à la base de donnée le modele
+				   $data = DbCasier::getAllCasiersEmp();
+				
+				//appel à la vue
+				include 'vue/vueCasier/v_listeCasier.php';
+				
+				break;
 				
 		}
 

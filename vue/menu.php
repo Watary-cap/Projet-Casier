@@ -9,7 +9,7 @@
 						  <a class="nav-link" href='index.php?ctl=Reservation&action=lister'>Affectation</a>
 					   </li>
 					   <li class="nav-item">
-						  <a class="nav-link" href='index.php?ctl=Casier&action=lister'>Casier</a>
+						  <a class="nav-link" href='index.php?ctl=Casier&action=listerEmpCasiers'>Casier</a>
 					   </li>
 					   <li class="nav-item">
 						  <a class="nav-link" href="index.php?ctl=Eleve&action=lister">Elève</a>
