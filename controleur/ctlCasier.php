@@ -27,21 +27,6 @@ switch($action){
 			 include 'vue/vueCasier/v_listeCasier.php';
 			 
 			 break;
-			 
-			 case 'supprimer':
-				
-				$id = $_GET['id'];
-				//appel à la base de donnée le modele pour suppression 
-				
-				DbCasier::deleteCasier($id);
-				
-				//appel à la base de donnée le modele pour listage
-				$data = DbCasier::getAllCasier();
-				
-				//appel à la vue
-				include 'vue/vueCasier/v_listeCasier.php';
-			
-			break;
 				
 		}
 

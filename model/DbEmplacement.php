@@ -18,7 +18,6 @@ class DbEmplacement{
 		$tabResult = $objResult->fetch(); // tableau
 		return $tabResult;
 		
-		
 	}
 	
 	public static function addEmplacement(){

@@ -27,21 +27,6 @@ switch($action){
 			 include 'vue/vueEmplacement/v_listeEmplacement.php';
 			 
 			 break;
-			 
-			 case 'supprimer':
-				
-				$id = $_GET['id'];
-				//appel à la base de donnée le modele pour suppression 
-				
-				DbEmplacement::deleteEmplacement($id);
-				
-				//appel à la base de donnée le modele pour listage
-				$data = DbEmplacement::getAllEmplacement();
-				
-				//appel à la vue
-				include 'vue/vueEmplacement/v_listeEmplacement.php';
-			
-			break;
 				
 		}
 

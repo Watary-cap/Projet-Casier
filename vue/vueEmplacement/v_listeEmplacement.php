@@ -2,9 +2,10 @@
  	<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>ID</th>
-						<th>NOM</th>
-						<th>NOMBRE_DE_CASIERS</th>
+						<th>Identifiant</th>
+						<th>Nom</th>
+						<th>Nombre de casiers</th>
+						<th>Nombre de casiers disponible</th>
 						</tr>
 				</thead>
 			<?php foreach($data as $ligne){ ?>
@@ -24,6 +25,3 @@
 				}
 				echo "</table>";
 			?>
-
- 
-</div>
