@@ -3,6 +3,17 @@ require_once "MysqlDb.php";
 
 class DbCasier{
 	
+	public static function getAllCasiersEmp(){
+		$sql = "SELECT * FROM emplacement,casiers,eleves,affectations 
+		WHERE casiers.emplacement_id=emplacement.id
+		AND affectations.id_eleve = eleves.id
+		AND affectations.id_casier= casiers.id;";
+		$connect = MysqlDb::getPdoDb();//objet classe PDO
+		$objResult = $connect->query($sql); //objet classe PDOStatement
+		$tabResult = $objResult->fetchAll(); // tableau
+		return $tabResult;
+	}
+
 	public static function getUnCasier($x){
 		$sql = "SELECT * FROM casiers WHERE id = :id";
 		$connect = MysqlDb::getPdoDb();
@@ -20,9 +31,25 @@ class DbCasier{
 	public static function updateCasier(){
 		
 	}
-	
-	public static function getAllCasiersEmp(){
-		$sql = "SELECT * FROM emplacement,casiers WHERE casiers.emplacement_id=emplacement.id;";
+
+	public static function  RechercheParStatut($statut){
+		$sql = "SELECT * FROM emplacement,casiers,eleves,affectations 
+		WHERE casiers.emplacement_id=emplacement.id
+		AND affectations.id_eleve = eleves.id
+		AND affectations.id_casier= casiers.id
+		AND statut='$statut';";
+		$connect = MysqlDb::getPdoDb();//objet classe PDO
+		$objResult = $connect->query($sql); //objet classe PDOStatement
+		$tabResult = $objResult->fetchAll(); // tableau
+		return $tabResult;
+	}
+
+	public static function  RechercheParEmplacement($Emplacement){
+		$sql = "SELECT * FROM emplacement,casiers,eleves,affectations 
+		WHERE casiers.emplacement_id=emplacement.id
+		AND affectations.id_eleve = eleves.id
+		AND affectations.id_casier= casiers.id
+		AND nom='$Emplacement';";
 		$connect = MysqlDb::getPdoDb();//objet classe PDO
 		$objResult = $connect->query($sql); //objet classe PDOStatement
 		$tabResult = $objResult->fetchAll(); // tableau

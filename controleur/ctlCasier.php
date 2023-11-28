@@ -29,6 +29,7 @@ switch($action){
 			 break;
 
 			 case 'listerEmpCasiers':
+				
 				//appel à la base de donnée le modele
 				   $data = DbCasier::getAllCasiersEmp();
 				
@@ -36,7 +37,30 @@ switch($action){
 				include 'vue/vueCasier/v_listeCasier.php';
 				
 				break;
+
+			case 'RechercheParStatut':
 				
+				$statut=$_POST['statut'];
+				
+				//appel à la base de donnée le modele
+				$data = DbCasier::RechercheParStatut($statut);
+					
+				//appel à la vue
+				include 'vue/vueCasier/v_listeCasier.php';
+					
+			break;
+
+			case 'RechercheParEmplacement':
+				
+				$Emplacement=$_POST['Emplacement'];
+					
+				//appel à la base de donnée le modele
+				$data = DbCasier::RechercheParEmplacement($Emplacement);
+						
+				//appel à la vue
+				include 'vue/vueCasier/v_listeCasier.php';
+						
+			break;
 		}
 
 ?>
