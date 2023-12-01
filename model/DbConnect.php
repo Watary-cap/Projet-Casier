@@ -17,7 +17,6 @@ class DbConnect{
 		
 		$objPrepare->bindParam(':mail', $x);
 		
-		
 		$objPrepare->execute();
 		
 		$result = $objPrepare->fetch();//tableau résultat (enregistrement bd)
