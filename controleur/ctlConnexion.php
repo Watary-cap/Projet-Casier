@@ -21,14 +21,19 @@ switch($action){
 				$email = $_POST['myEmail'];
 				$pwd = $_POST['myPassword'];
 				if(DbConnect::verifPassword($pwd)==true){
-					
+					$pwd = password_hash($pwd,PASSWORD_BCRYPT);
 					//appel à la fonction verifLogin de Dbconnect du modele
 					$tabresult = DbConnect::verifLogin($email,$pwd);
 				
+
 					if($tabresult==true){
-						$_SESSION['connect'] =true;
-						$_SESSION['email'] =$email;
-						header('Location: index.php');
+						if(password_verify($_POST['myPassword'],$pwd)){
+							$_SESSION['connect'] =true;
+							$_SESSION['email'] =$email;
+							header('Location: index.php');
+						}else{
+							header('Location: index.php');
+						}
 					}else
 					{
 						session_destroy();

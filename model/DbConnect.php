@@ -12,11 +12,11 @@ class DbConnect{
 	public static function verifLogin($x,$y){
 		$connect = MysqlDb::getPdoDb();//objet classe PDO
 		
-		$sql = "SELECT * FROM utilisateurs WHERE email =:mail and pwd=:mdp";			
+		$sql = "SELECT * FROM utilisateurs WHERE email =:mail";			
 		$objPrepare =$connect->prepare($sql);
 		
 		$objPrepare->bindParam(':mail', $x);
-		$objPrepare->bindParam(':mdp', $y);
+		
 		
 		$objPrepare->execute();
 		
