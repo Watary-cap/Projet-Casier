@@ -29,10 +29,13 @@ switch($action){
              break;
              case 'modifEmplacement':
                 $id = $_POST['id'];
+                $nb = $_POST['nb'];
+
                 //appel à la base de donnée le modele
-                   $data = DbEmplacement::updateEmplacement($id);
+                   DbEmplacement::updateEmplacement($id,$nb);
 
                 //appel à la vue
+                $data = DbEmplacement::getAllEmplacement();
                 include 'vue/vueEmplacement/v_listeEmplacement.php';
 
                 break;

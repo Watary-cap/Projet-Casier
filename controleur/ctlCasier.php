@@ -61,6 +61,18 @@ switch($action){
 				include 'vue/vueCasier/v_listeCasier.php';
 						
 			break;
+			case 'modifStatut':
+                $id = $_POST['id'];
+				$statut=$_POST['statut'];
+
+                //appel à la base de donnée le modele
+                   DbCasier::updateCasier($id,$statut);
+
+                //appel à la vue
+                $data = DbCasier::getAllCasiersEmp();
+                include 'vue/vueCasier/v_listeCasier.php';
+
+                break;
 		}
 
 ?>

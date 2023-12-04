@@ -23,8 +23,12 @@ class DbEmplacement{
     public static function addEmplacement(){
 
     }
-    public static function updateEmplacement($id){
+    public static function updateEmplacement($id, $nb){
+        $sql = "UPDATE emplacement SET nombre_de_casiers = $nb WHERE emplacement.id = $id";
+        $connect = MysqlDb::getPdoDb(); // Obtenez la connexion PDO
+        $objResult = $connect->exec($sql); // Exécutez la requête de mise à jour
 
+        return $objResult;
     }
 }
 

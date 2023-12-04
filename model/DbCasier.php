@@ -28,10 +28,6 @@ class DbCasier{
 		
 	}
 
-	public static function updateCasier(){
-		
-	}
-
 	public static function  RechercheParStatut($statut){
 		$sql = "SELECT * FROM emplacement,casiers,eleves,affectations 
 		WHERE casiers.emplacement_id=emplacement.id
@@ -55,6 +51,14 @@ class DbCasier{
 		$tabResult = $objResult->fetchAll(); // tableau
 		return $tabResult;
 	}
+
+	public static function updateCasier($id,$statut){
+		$sql = "UPDATE casiers SET statut = '$statut' WHERE id = $id";
+        $connect = MysqlDb::getPdoDb(); // Obtenez la connexion PDO
+        $objResult = $connect->exec($sql); // Exécutez la requête de mise à jour
+
+        return $objResult;
+    }
 }
 
 ?>
