@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-  <style>
-    .custom-select {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+    <style>
+        .custom-select {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
@@ -100,10 +100,12 @@
                                     <option value="Libre" <?php echo ($ligne['statut'] === 'Libre') ? 'selected' : ''; ?>>Libre</option>
                                     <option value="Maintenance" <?php echo ($ligne['statut'] === 'Maintenance') ? 'selected' : ''; ?>>Maintenance</option>
                                 </select>
-<br>
+                                <br>
                                 <!-- Ajoutez d'autres champs selon vos besoins -->
                                 <input type="hidden" name="id" value="<?php echo $ligne['id']; ?>">
-                                <button type="submit" class="btn btn-primary">Modifier</button>
+                                <div class="form-group text-center"> <!-- Ajout de la classe text-center -->
+                                    <button type="submit" class="btn btn-primary">Modifier</button>
+                                </div>
                             </form>
                         </div>
                     </div>
