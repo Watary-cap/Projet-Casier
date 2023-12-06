@@ -1,3 +1,4 @@
+<html>
 <div class="row">
     <h2>Modifier les informations d'emplacement</h2>
 
@@ -5,6 +6,7 @@
         <!-- Ajoutez les champs nécessaires en fonction de vos besoins -->
         <label for="numero">Nom emplacement:</label>
         <input type="text" id="numero" name="nom" value="<?php echo $data['nom']; ?>" required>
+        <br>
         <label for="numero">Nombre casiers:</label>
         <input type="text" name="nb" value="<?php echo $data['nombre_de_casiers']; ?>" required>
 
@@ -16,3 +18,4 @@
         <button type="submit">Modifier</button>
     </form>
 </div>
+</html>
