@@ -23,6 +23,10 @@ if(isset($_SESSION['connect'])){
 					 case 'Emplacement':
 						include 'controleur/ctlEmplacement.php';
 						break;
+
+					case 'Affectation':
+						include 'controleur/ctlAffectation.php';
+						break;
 				}	
 		}		
 if(!isset($_SESSION['connect'])){

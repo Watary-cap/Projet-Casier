@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- CSS Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Votre Titre</title>
+    <!-- Assurez-vous d'inclure les liens vers Bootstrap et Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -17,19 +15,20 @@
                     <th>Identifiant</th>
                     <th>Nom</th>
                     <th>Nombre de casiers</th>
-                    <th>Nombre de casiers disponible</th>
+                    <th>Visualisation</th>
                     <th>Action</th>
                 </tr>
             </thead>
-            <?php foreach($data as $ligne){ ?>
+            <?php foreach ($data as $ligne) { ?>
                 <tr>
                     <td><?php echo $ligne['id']; ?></td>
-                    <td><?php echo $ligne['nom'];?></td>
-                    <td><?php echo $ligne['nombre_de_casiers'];?></td>
+                    <td><?php echo $ligne['nom']; ?></td>
+                    <td><?php echo $ligne['nombre_de_casiers']; ?></td>
                     <td>
-                        <a href="index.php?ctl=Emplacement&action=fiche&id=<?php echo $ligne['id'];?>">
-                            <img src=".\vue\images\editer.png" width=20px height=20px>
-                        </a>
+                        <!-- Bouton Bootstrap avec icône et attribut data-toggle pour le modal -->
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#statusModal<?php echo $ligne['id']; ?>">
+                            Visualisation
+                        </button>
                     </td>
                     <td>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $ligne['id']; ?>">
@@ -37,7 +36,30 @@
                         </button>
                     </td>
                 </tr>
-                <!-- Modal -->
+                <!-- Modal pour la visualisation des casiers -->
+                <?php
+                $casiers = DbEmplacement::getCasiersForEmplacement($ligne['id']); // Ajout de cette ligne
+                ?>
+                <div class="modal fade" id="statusModal<?php echo $ligne['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="statusModalLabel">Visualisation des casiers</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Ajoutez ici le contenu visuel pour la visualisation des casiers -->
+                                <?php foreach ($casiers as $casier) { ?>
+                                    <div style="width: 20px; height: 20px; display: inline-block; background-color: <?php echo $casier['pris'] ? 'red' : 'green'; ?>"></div>
+                                <?php } ?>
+                                <!-- Ajoutez d'autres informations visuelles selon vos besoins -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal pour la modification -->
                 <div class="modal fade" id="myModal<?php echo $ligne['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
@@ -50,7 +72,7 @@
                             <div class="modal-body">
                                 <!-- Formulaire ici -->
                                 <form action="index.php?ctl=Emplacement&action=modifEmplacement" method="post">
-                                    <!-- Ajoutez les champs nÃ©cessaires en fonction de vos besoins -->
+                                    <!-- Ajoutez les champs nécessaires en fonction de vos besoins -->
                                     <label for="numero">Nom emplacement:</label>
                                     <input type="text" id="numero" name="nom" value="<?php echo $ligne['nom']; ?>" required>
                                     <label for="numero">Nombre casiers:</label>
@@ -68,10 +90,9 @@
     </div>
 </div>
 
-<!-- JS Bootstrap (optional) -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- Assurez-vous d'inclure les liens vers Bootstrap et jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
 </body>
 </html>

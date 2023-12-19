@@ -1,45 +1,43 @@
 <?php
 include './model/DbEmplacement.php';
 
-$action =$_GET['action'];
+$action = $_GET['action'];
 
-switch($action){
+switch ($action) {
+    case 'fiche':
+        // Récupération de l'id de l'url
+        $id = $_GET['id'];
 
+        // Appel à la base de données le modèle pour récupérer les informations sur l'emplacement
+        $data = DbEmplacement::getUnEmplacement($id);
 
-            case 'fiche':
+        // Appel à la base de données le modèle pour récupérer les informations sur les casiers
+        $casiers = DbEmplacement::getCasiersForEmplacement($id);
 
-            //récuperation de l'id de l'url
-                $id = $_GET['id'];
+        // Appel à la vue
+        include 'vue/vueEmplacement/v_ficheEmplacement.php';
+        break;
 
-             //appel à la base de donnée le modele
-                $data = DbEmplacement::getUnEmplacement($id);
+    case 'lister':
+        // Appel à la base de données le modèle pour récupérer toutes les informations sur les emplacements
+        $data = DbEmplacement::getAllEmplacement();
 
-             //appel à la vue
-             include 'vue/vueEmplacement/v_ficheEmplacement.php';
+        // Appel à la vue
+        include 'vue/vueEmplacement/v_listeEmplacement.php';
+        break;
 
-             break;
+    case 'modifEmplacement':
+        $id = $_POST['id'];
+        $nb = $_POST['nb'];
 
-            case 'lister':
-             //appel à la base de donnée le modele
-                $data = DbEmplacement::getAllEmplacement();
+        // Appel à la base de données le modèle pour mettre à jour les informations sur l'emplacement
+        DbEmplacement::updateEmplacement($id, $nb);
 
-             //appel à la vue
-             include 'vue/vueEmplacement/v_listeEmplacement.php';
+        // Appel à la base de données le modèle pour récupérer toutes les informations sur les emplacements
+        $data = DbEmplacement::getAllEmplacement();
 
-             break;
-             case 'modifEmplacement':
-                $id = $_POST['id'];
-                $nb = $_POST['nb'];
-
-                //appel à la base de donnée le modele
-                   DbEmplacement::updateEmplacement($id,$nb);
-
-                //appel à la vue
-                $data = DbEmplacement::getAllEmplacement();
-                include 'vue/vueEmplacement/v_listeEmplacement.php';
-
-                break;
-
-        }
-
+        // Appel à la vue
+        include 'vue/vueEmplacement/v_listeEmplacement.php';
+        break;
+}
 ?>
