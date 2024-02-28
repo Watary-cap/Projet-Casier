@@ -57,13 +57,32 @@ class DbEmplacement
     public static function getCasiersForEmplacement($idEmplacement)
     {
         try {
-            $sql = "SELECT * FROM casiers WHERE id_emplacement = :id_emplacement";
+            $sql = "SELECT * FROM casiers WHERE emplacement_id = :id_emplacement";
             $connect = MysqlDb::getPdoDb();
             $stmt = $connect->prepare($sql);
             $stmt->bindParam(':id_emplacement', $idEmplacement, PDO::PARAM_INT);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
             return $result;
+        } catch (PDOException $e) {
+            // Gérer l'erreur de la manière qui convient à votre application
+            die("Erreur lors de la récupération des casiers pour un emplacement: " . $e->getMessage());
+        }
+    }
+    public static function getEmpForEleve($idEmplacement)
+    {
+        try {
+            $sql = "SELECT * FROM emplacement, casiers, affectations, eleves 
+            WHERE casiers.emplacement_id = emplacement.id_emp 
+            AND casiers.idcasier = affectations.id_casier 
+            AND affectations.id_eleve = eleves.id;";
+            $connect = MysqlDb::getPdoDb();
+            $stmt = $connect->prepare($sql);
+            $stmt->bindParam(':id_emplacement', $idEmplacement, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            return $result;
+    
         } catch (PDOException $e) {
             // Gérer l'erreur de la manière qui convient à votre application
             die("Erreur lors de la récupération des casiers pour un emplacement: " . $e->getMessage());

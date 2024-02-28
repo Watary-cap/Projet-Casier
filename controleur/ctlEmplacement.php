@@ -39,5 +39,17 @@ switch ($action) {
         // Appel à la vue
         include 'vue/vueEmplacement/v_listeEmplacement.php';
         break;
+
+    case 'listCasier':
+        $id=$_GET['idemp'];
+        // Appel à la base de données le modèle pour récupérer toutes les informations sur les emplacements
+        $data = DbEmplacement::getCasiersForEmplacement($id);
+
+        $data2 = DbEmplacement::getUnEmplacement($id);
+
+        $data3 = DbEmplacement::getEmpForEleve($id);
+        // Appel à la vue
+        include 'vue/vueEmplacement/v_listCasierparEmp.php';
+        break;
 }
 ?>

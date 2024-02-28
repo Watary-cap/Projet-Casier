@@ -21,46 +21,20 @@
             </thead>
             <?php foreach ($data as $ligne) { ?>
                 <tr>
-                    <td><?php echo $ligne['id']; ?></td>
+                    <td><?php echo $ligne['id_emp']; ?></td>
                     <td><?php echo $ligne['nom']; ?></td>
                     <td><?php echo $ligne['nombre_de_casiers']; ?></td>
                     <td>
-                        <!-- Bouton Bootstrap avec icône et attribut data-toggle pour le modal -->
-                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#statusModal<?php echo $ligne['id']; ?>">
-                            Visualisation
-                        </button>
+                        <a class="nav-link" href="index.php?ctl=Emplacement&action=listCasier&idemp=<?php echo $ligne['id_emp']; ?>">Visualisation</a>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $ligne['id']; ?>">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal<?php echo $ligne['id_emp']; ?>">
                             Modifier
                         </button>
                     </td>
                 </tr>
-                <!-- Modal pour la visualisation des casiers -->
-                <?php
-                $casiers = DbEmplacement::getCasiersForEmplacement($ligne['id']); // Ajout de cette ligne
-                ?>
-                <div class="modal fade" id="statusModal<?php echo $ligne['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="statusModalLabel">Visualisation des casiers</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Ajoutez ici le contenu visuel pour la visualisation des casiers -->
-                                <?php foreach ($casiers as $casier) { ?>
-                                    <div style="width: 20px; height: 20px; display: inline-block; background-color: <?php echo $casier['pris'] ? 'red' : 'green'; ?>"></div>
-                                <?php } ?>
-                                <!-- Ajoutez d'autres informations visuelles selon vos besoins -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <!-- Modal pour la modification -->
-                <div class="modal fade" id="myModal<?php echo $ligne['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade" id="myModal<?php echo $ligne['id_emp']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -78,7 +52,7 @@
                                     <label for="numero">Nombre casiers:</label>
                                     <input type="text" name="nb" value="<?php echo $ligne['nombre_de_casiers']; ?>" required>
                                     <!-- Ajoutez d'autres champs selon vos besoins -->
-                                    <input type="hidden" name="id" value="<?php echo $ligne['id']; ?>">
+                                    <input type="hidden" name="id" value="<?php echo $ligne['id_emp']; ?>">
                                     <button type="submit" class="btn btn-primary">Modifier</button>
                                 </form>
                             </div>

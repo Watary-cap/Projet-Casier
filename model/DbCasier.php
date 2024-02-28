@@ -5,12 +5,12 @@ class DbCasier{
 	
 	public static function getAllCasiersEmp(){
 		$sql = "SELECT * FROM emplacement,casiers,eleves,affectations 
-		WHERE casiers.emplacement_id=emplacement.id
+		WHERE casiers.emplacement_id=emplacement.id_emp
 		AND affectations.id_eleve = eleves.id
-		AND affectations.id_casier= casiers.id;";
+		AND affectations.id_casier= casiers.idcasier;";
 		$connect = MysqlDb::getPdoDb();//objet classe PDO
 		$objResult = $connect->query($sql); //objet classe PDOStatement
-		$tabResult = $objResult->fetchAll(); // tableau
+		$tabResult = $objResult->fetchall(); // tableau
 		return $tabResult;
 	}
 
