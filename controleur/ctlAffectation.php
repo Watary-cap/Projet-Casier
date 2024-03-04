@@ -5,7 +5,7 @@ $action =$_GET['action'];
 
 switch($action){
 		
-		
+		bbb
 			case 'fiche':
 			
 			//récuperation de l'id de l'url
