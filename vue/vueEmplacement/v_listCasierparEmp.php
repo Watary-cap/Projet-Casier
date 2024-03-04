@@ -19,9 +19,15 @@
                             <div class="card h-100">
                                 <h4 class="card-title text-center"><?php echo $ligne['numero'];?></h4>
                                 <p class="card-text">
-                                    <?php echo $ligne['statut'];?>
+                                    <?php echo $ligne['statut'];
+                                    $data3 = DbEmplacement::getEmpForEleve($ligne['idcasier']);
+                                    if(!empty($data3)){
+                                        $nom = $data3[0]['nom_eleve'];
+                                    }
+
+                                    ?>
                                 </p>
-                                <a href="#" class="btn btn-primary" onclick="showPopup('test')">voir</a>
+                                <a href="#" class="btn btn-primary" onclick="showPopup(<?php echo $nom; ?>)">voir</a>
                             </div>
                         </div>
                     <?php } ?>
@@ -36,10 +42,10 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 
 <script>
-    function showPopup(numero, statut) {
+    function showPopup(nom) {
         // Utilisez ici une méthode de votre choix pour afficher une pop-up
         // Par exemple, avec JavaScript, vous pouvez utiliser la fonction `alert` :
-        alert("Numéro: " + numero + "\nStatut: " + statut);
+        alert("Nom: " + nom);
     }
 </script>
 

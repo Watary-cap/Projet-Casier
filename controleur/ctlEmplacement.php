@@ -47,7 +47,7 @@ switch ($action) {
 
         $data2 = DbEmplacement::getUnEmplacement($id);
 
-        $data3 = DbEmplacement::getEmpForEleve($id);
+        
         // Appel à la vue
         include 'vue/vueEmplacement/v_listCasierparEmp.php';
         break;

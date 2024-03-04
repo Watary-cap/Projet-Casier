@@ -20,7 +20,7 @@ class DbEmplacement
     public static function getUnEmplacement($x)
     {
         try {
-            $sql = "SELECT * FROM emplacement WHERE id = :id";
+            $sql = "SELECT * FROM emplacement WHERE id_emp = :id";
             $connect = MysqlDb::getPdoDb();
             $stmt = $connect->prepare($sql);
             $stmt->bindParam(':id', $x, PDO::PARAM_INT);
@@ -69,13 +69,13 @@ class DbEmplacement
             die("Erreur lors de la récupération des casiers pour un emplacement: " . $e->getMessage());
         }
     }
-    public static function getEmpForEleve($idEmplacement)
+    public static function getEmpForEleve($idcasier)
     {
         try {
-            $sql = "SELECT * FROM emplacement, casiers, affectations, eleves 
-            WHERE casiers.emplacement_id = emplacement.id_emp 
-            AND casiers.idcasier = affectations.id_casier 
-            AND affectations.id_eleve = eleves.id;";
+            $sql = "SELECT * FROM casiers, affectations, eleves 
+            WHERE casiers.idcasier = affectations.id_casier 
+            AND affectations.id_eleve = eleves.id
+            AND idcasier=$idcasier;";
             $connect = MysqlDb::getPdoDb();
             $stmt = $connect->prepare($sql);
             $stmt->bindParam(':id_emplacement', $idEmplacement, PDO::PARAM_INT);
